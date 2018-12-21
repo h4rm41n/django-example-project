@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>
+    <small class="text-muted">List instansi</small>
+    <small class="text-muted" style="float:right">
+      <a href="{% url 'surat:instansi_form' %}">Add data</a>
+    </small>
+  </h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nama Instansi</th>
+        <th scope="col">Kategori</th>
+        <th scope="col">Telepon</th>
+        <th scope="col">Kode Pos</th>
+        <th scope="col">Alamat</th>
+        <th scope="col">Date</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    {% for dt in data %}
+      <tbody>
+        <tr>
+          <td scope="col">{{ forloop.counter }} .</td>
+          <td scope="row">{{ dt.nama_instansi }}</td>
+          <td>{{dt.kategori}}</td>
+          <td>{{dt.telepon}}</td>
+          <td>{{dt.kode_pos}}</td>
+          <td>{{dt.alamat}}</td>
+          <td>{{dt.created|timesince}}</td>
+          <td>
+            <a href="{% url 'surat:instansi_edit' dt.id %}">Edit</a> | 
+            <a onclick="return confirm('Delete data?')" href="{% url 'surat:instansi_delete' dt.id %}">Hapus</a>
+          </td>
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+{% endblock content %}  

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h4>
+    <small class="text-muted">List surat masuk</small>
+    <small class="text-muted" style="float:right">
+      <a href="{% url 'surat:surat_masuk_form' %}">Add data</a>
+    </small>
+  </h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nomor</th>
+        <th scope="col">Tanggal surat</th>
+        <th scope="col">Perihal</th>
+        <th scope="col">Pengirim/Jasa</th>
+        <th scope="col">Deksripsi</th>
+        <th scope="col">Asal instansi</th>
+        <th scope="col">Tanggal masuk</th>
+        <th scope="col">Date</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    {% for dt in data %}
+      <tbody>
+        <tr>
+          <td scope="col">{{ forloop.counter }}</td>
+          <td scope="row">{{ dt.nomor }}</td>
+          <td>{{dt.tgl_surat}}</td>
+          <td>{{dt.perihal}}</td>
+          <td>{{dt.pengirim}}</td>
+          <td>{{dt.deskripsi}}</td>
+          <td>{{dt.asal_instansi}}</td>
+          <td>{{dt.tgl_masuk}}</td>
+          <td>{{dt.created|timesince}}</td>
+          <td>
+            <a href="{% url 'surat:surat_masuk_edit' dt.id %}">Edit</a> | 
+            <a onclick="return confirm('Delete data?')" href="{% url 'surat:surat_masuk_delete' dt.id %}">Hapus</a>
+          </td>
+        </tr>
+      </tbody>
+    {% endfor %}
+  </table>
+{% endblock content %}

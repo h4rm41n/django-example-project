@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h4>
-    <small class="text-muted">List surat masuk</small>
-    <small class="text-muted" style="float:right">
-      <a href="{% url 'surat:surat_masuk_form' %}">Add data</a>
-    </small>
-  </h4>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">List</li>
+      <li class="breadcrumb-item"><a href="{% url 'surat:sm_form' %}">New</a></li>
+    </ol>
+  </nav>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -22,7 +22,7 @@
         <th scope="col">#</th>
       </tr>
     </thead>
-    {% for dt in data %}
+    {% for dt in object_list %}
       <tbody>
         <tr>
           <td scope="col">{{ forloop.counter }}</td>
@@ -35,8 +35,8 @@
           <td>{{dt.tgl_masuk}}</td>
           <td>{{dt.created|timesince}}</td>
           <td>
-            <a href="{% url 'surat:surat_masuk_edit' dt.id %}">Edit</a> | 
-            <a onclick="return confirm('Delete data?')" href="{% url 'surat:surat_masuk_delete' dt.id %}">Hapus</a>
+            <a class="btn btn-warning btn-sm" href="{% url 'surat:sm_edit' dt.id %}">Edit</a> | 
+            <a class="btn btn-danger btn-sm" onclick="return confirm('Delete data?')" href="{% url 'surat:sm_delete' dt.id %}">Hapus</a>
           </td>
         </tr>
       </tbody>

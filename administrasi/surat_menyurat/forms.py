@@ -9,7 +9,7 @@ class FormSuratMasuk(forms.ModelForm):
   def __init__(self, *args, **kwargs):
     super(FormSuratMasuk, self).__init__(*args, **kwargs)
     for visible in self.visible_fields():
-      visible.field.widget.attrs['class'] = 'form-control'
+      visible.field.widget.attrs['class'] = 'form-control form-control-sm'
     
 class FormSuratKeluar(forms.ModelForm):
   class Meta:
@@ -19,7 +19,7 @@ class FormSuratKeluar(forms.ModelForm):
   def __init__(self, *args, **kwargs):
     super(FormSuratKeluar, self).__init__(*args, **kwargs)
     for visible in self.visible_fields():
-      visible.field.widget.attrs['class'] = 'form-control'
+      visible.field.widget.attrs['class'] = 'form-control form-control-sm'
       
 class FormInstansi(forms.ModelForm):
   class Meta:
@@ -29,4 +29,4 @@ class FormInstansi(forms.ModelForm):
   def __init__(self, *args, **kwargs):
     super(FormInstansi, self).__init__(*args, **kwargs)
     for visible in self.visible_fields():
-      visible.field.widget.attrs['class'] = 'form-control'
+      visible.field.widget.attrs['class'] = 'form-control form-control-sm'

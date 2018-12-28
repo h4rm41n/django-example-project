@@ -1,2 +1,6 @@
 *.pyc
 env
+venv
+siteenv
+newenv
+.vscode
